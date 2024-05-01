@@ -1,16 +1,20 @@
-# polaris
+# Polaris
 
-A new Flutter project.
+A smart metering Flutter project.
 
-## Getting Started
+## Overview
 
-This project is a starting point for a Flutter application.
+The Smart Metering Flutter project is a modern solution for utility companies and consumers alike to efficiently manage energy consumption. This innovative app leverages Flutter technology to provide a seamless user experience across multiple platforms, including Android and iOS.
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Prerequisites
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter SDK installed ([Installation instructions](https://flutter.dev/docs/get-started/install))
+
+### Steps
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/your-app.git
