@@ -17,4 +17,7 @@ The Smart Metering Flutter project is a modern solution for utility companies an
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/your-app.git
+   https://github.com/GautamSharma05/POLARIS_ASSIGNMENT/tree/main
+   
+   ```bash
+   cd polaris
