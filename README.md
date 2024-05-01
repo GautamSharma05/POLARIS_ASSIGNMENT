@@ -47,4 +47,20 @@ The Polaris project consists of five main components, each serving a specific fu
 
 These components are essential for collecting various types of data from users and facilitating seamless interaction with the app's features. By dynamically loading them based on JSON configuration, the app ensures flexibility and scalability in accommodating different form structures and requirements.
 
+### Validation
+
+The Polaris project implements comprehensive form validation to ensure data integrity and accuracy. This validation process is applied to all form fields dynamically loaded based on JSON data fetched from a remote server. Here's an overview of the validation process:
+
+1. **EditTextFormField Validation:**
+Ensures that text fields are not left empty. If the user attempts to submit the form with empty text fields marked as mandatory, an error message prompts them to fill in the required information.
+2. **CheckBoxesFormField Validation:**
+Verifies that at least one option is selected from the list of checkboxes. If no option is selected for a mandatory checkbox field, the form submission is prevented, and the user is prompted to select at least one option.
+3. **DropDownFormField Validation:**
+Validates that a selection is made from the dropdown menu. If the dropdown field is marked as mandatory and no option is selected, the form submission is halted, and the user is prompted to choose an option from the list.
+4. **RadioGroupFormField Validation:**
+Confirms that a single option is selected from the group of radio buttons. If the radio group field is mandatory and no option is selected, the submission is blocked, and the user is reminded to choose a single option.
+5. **CaptureImagesFormField Validation:**
+Verifies that at least one image is captured and uploaded. If the field requires an image capture and no image is uploaded, the form submission is prohibited, and the user is instructed to capture and upload at least one image.
+
+
    
