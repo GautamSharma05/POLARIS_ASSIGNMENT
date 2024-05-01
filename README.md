@@ -18,10 +18,19 @@ The Smart Metering Flutter project is a modern solution for utility companies an
 
    ```bash
    https://github.com/GautamSharma05/POLARIS_ASSIGNMENT/tree/main
-   
+
+2. Change Directory:
+
+   ```bash
    cd POLARIS_ASSIGNMENT
+
+3. Get Packages:
+
+   ```bash
+   flutter pub get 
+
+4. Run App:
+
+   ```bash
+   flutter run       
    
-   flutter pub get
-
-   flutter run
-
