@@ -12,7 +12,7 @@ The Smart Metering Flutter project is a modern solution for utility companies an
 
 - Flutter SDK installed ([Installation instructions](https://flutter.dev/docs/get-started/install))
 
-### Steps
+### Steps to run the project
 
 1. Clone the repository:
 
