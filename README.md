@@ -62,5 +62,7 @@ Confirms that a single option is selected from the group of radio buttons. If th
 5. **CaptureImagesFormField Validation:**
 Verifies that at least one image is captured and uploaded. If the field requires an image capture and no image is uploaded, the form submission is prohibited, and the user is instructed to capture and upload at least one image.
 
+By implementing these validation checks, the Polaris project ensures that all form submissions contain accurate and complete data, enhancing the overall reliability and usability of the application.
+
 
    
