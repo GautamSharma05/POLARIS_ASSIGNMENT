@@ -64,5 +64,14 @@ Verifies that at least one image is captured and uploaded. If the field requires
 
 By implementing these validation checks, the Polaris project ensures that all form submissions contain accurate and complete data, enhancing the overall reliability and usability of the application.
 
+### Local Storage and Server Integration
+
+In the Polaris project, data persistence and server communication are seamlessly integrated to provide a robust and reliable user experience. The app employs local storage for offline data storage and synchronization with a remote server when an internet connection is available.
+
+### Internet Connectivity Check
+
+The app continuously monitors internet connectivity status using the **connectivity_plus** plugin. When the internet connection becomes available, the app automatically triggers synchronization with the server to upload locally stored data and retrieve any pending updates.
+
+By integrating local storage and server communication, the Polaris project offers users a seamless and uninterrupted experience, regardless of their internet connectivity status. This approach ensures data integrity, reliability, and accessibility, enhancing the overall usability and effectiveness of the application.
 
    
