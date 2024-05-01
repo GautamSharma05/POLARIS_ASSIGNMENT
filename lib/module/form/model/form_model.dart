@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final formModel = formModelFromJson(jsonString);
-
 import 'dart:convert';
 
 FormModel formModelFromJson(String str) => FormModel.fromJson(json.decode(str));

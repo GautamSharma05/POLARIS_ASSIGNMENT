@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
             style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(4.0)), // Set the border radius to zero for no rounded corners
+              borderRadius: BorderRadius.all(Radius.circular(4.0)),
             ),
           ),
         )),
