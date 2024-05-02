@@ -15,11 +15,13 @@ class FormRepo extends ChangeNotifier {
   final Map<String, String?> capturedImages = {};
   Map<String, String?> selectedRadioOptions = {};
   Map<String, List<String>> selectedCheckboxOptions = {};
+
+
   List<Field> formField = <Field>[];
   final SecureStorage secureStorage = SecureStorage();
   late Map<String, TextEditingController> controllers;
 
-  Future<List<Field>> getFormUiJson() async {
+  Future<List<Field>> getFormUiJson(context) async {
     formField.clear();
     try {
       final apiCall = RestClient(DioClient.getDio());
@@ -27,9 +29,11 @@ class FormRepo extends ChangeNotifier {
         formName = value.formName;
         formField.addAll(value.fields);
       }).catchError((onError) {
+        Util.getFlashBar(context, AppText.somethingWentWrongText);
         log('Form Fetching ${onError.toString()}');
       });
     } catch (error) {
+      Util.getFlashBar(context, AppText.somethingWentWrongText);
       log('Form Fetching ${error.toString()}');
     }
     return formField;
@@ -60,17 +64,19 @@ class FormRepo extends ChangeNotifier {
       }
 
       await secureStorage.writeSecureData('Form Data', body.toString()).then((value) {
-        clearForm();
+        clearForm(formData);
         AppNavigator.replaceClassName(context, const HomeRoute());
       }).catchError((onError) {
+        Util.getFlashBar(context, AppText.somethingWentWrongText);
         log('Error On Submit Form Locally ${onError.toString()}');
       });
     } catch (error) {
+      Util.getFlashBar(context, AppText.somethingWentWrongText);
       log('Submit Form Locally ${error.toString()}');
     }
   }
 
-  Future<void> submitToServer(List<Field> formData) async {
+  Future<void> submitToServer(List<Field> formData, context) async {
     log('Server $formData');
     try {
       final apiCall = RestClient(DioClient.getDio());
@@ -98,19 +104,36 @@ class FormRepo extends ChangeNotifier {
       await apiCall.submitForm(body).then((value) {
         log(value.toString());
       }).catchError((onError) {
+        Util.getFlashBar(context, AppText.somethingWentWrongText);
         log('Submit Form ${onError.toString()}');
       });
     } catch (error) {
+      Util.getFlashBar(context, AppText.somethingWentWrongText);
       log('Submit Form ${error.toString()}');
     }
   }
 
-  clearForm() {
-    controllers.clear();
-    selectedDropdownOptions.clear();
-    capturedImages.clear();
-    selectedRadioOptions.clear();
-    selectedCheckboxOptions.clear();
+  void clearForm(List<Field> fields) {
+    for (var field in fields) {
+      switch (field.componentType) {
+        case 'EditText':
+          controllers[field.metaInfo.label]?.clear();
+          break;
+        case 'DropDown':
+          selectedDropdownOptions.remove(field.metaInfo.label);
+          break;
+        case 'CheckBoxes':
+          selectedCheckboxOptions.remove(field.metaInfo.label);
+          break;
+        case 'RadioGroup':
+          selectedRadioOptions.remove(field.metaInfo.label);
+          break;
+        case 'CaptureImages':
+          capturedImages.remove(field.metaInfo.label);
+          break;
+      }
+    }
+
     notifyListeners();
   }
 
@@ -121,7 +144,7 @@ class FormRepo extends ChangeNotifier {
     }
 
     if (await Util.checkInternetConnectivity()) {
-      submitToServer(fields);
+      submitToServer(fields, context);
     } else {
       storeLocally(fields, context);
     }

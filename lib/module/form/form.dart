@@ -49,7 +49,7 @@ class _FormPageState extends ConsumerState<FormPage> {
             return SingleChildScrollView(
               child: AsyncLoader(
                   key: asyncKey,
-                  initState: () async => await formRepo.getFormUiJson(),
+                  initState: () async => await formRepo.getFormUiJson(context),
                   renderLoad: () => const Center(child: CircularProgressIndicator()),
                   renderError: ([error]) => const Center(child: Text('Sorry, there was an error loading Form')),
                   renderSuccess: ({data}) {
@@ -84,6 +84,7 @@ class _FormPageState extends ConsumerState<FormPage> {
   _buildFormField(List<Field> fields, formRepo) {
     return fields.map((field) {
       TextEditingController controller = TextEditingController();
+
       formRepo.controllers[field.metaInfo.label] = controller;
       switch (field.componentType) {
         case 'EditText':
@@ -98,16 +99,17 @@ class _FormPageState extends ConsumerState<FormPage> {
           );
         case 'DropDown':
           return DropDownFormField(
+            key: GlobalKey(),
             label: field.metaInfo.label,
             options: field.metaInfo.options ?? [],
             mandatory: field.metaInfo.mandatory == 'yes',
             onOptionSelected: (option) {
-              log(option.toString());
               formRepo.selectedDropdownOptions[field.metaInfo.label] = option;
             },
           );
         case 'CheckBoxes':
           return CheckBoxesFormField(
+            key: GlobalKey(),
             label: field.metaInfo.label,
             options: field.metaInfo.options ?? [],
             mandatory: field.metaInfo.mandatory == 'yes',
@@ -118,6 +120,7 @@ class _FormPageState extends ConsumerState<FormPage> {
 
         case 'RadioGroup':
           return RadioGroupFormField(
+            key: GlobalKey(),
             label: field.metaInfo.label,
             options: field.metaInfo.options ?? [],
             mandatory: field.metaInfo.mandatory == 'yes',
@@ -127,6 +130,7 @@ class _FormPageState extends ConsumerState<FormPage> {
           );
         case 'CaptureImages':
           return CaptureImagesFormField(
+            key: GlobalKey(),
             label: field.metaInfo.label,
             noImagesToCapture: field.metaInfo.noOfImagesToCapture ?? 0,
             savingFolder: field.metaInfo.savingFolder ?? '',

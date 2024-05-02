@@ -8,4 +8,5 @@ class AppText {
   static const String formSubmittedSuccessfully = 'Form Submitted Successfully';
   static const String homeContentText = "We Will Get back To You Soon";
   static const String homePageHeading = "Home Page";
+  static const String somethingWentWrongText = 'Something Went Wrong';
 }

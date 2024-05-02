@@ -8,12 +8,12 @@ class DropDownFormField extends StatefulWidget {
   final Function(String?) onOptionSelected;
 
   const DropDownFormField({
-    super.key,
+    Key? key, // Add Key parameter here
     required this.label,
     required this.options,
     required this.mandatory,
     required this.onOptionSelected,
-  });
+  }) : super(key: key); // Assign the key parameter to the super constructor
 
   @override
   State<DropDownFormField> createState() => _DropDownFormFieldState();
@@ -22,6 +22,12 @@ class DropDownFormField extends StatefulWidget {
 class _DropDownFormFieldState extends State<DropDownFormField> {
   String? _selectedOption;
   String? _errorMessage;
+
+  void clearOption() {
+    setState(() {
+      _selectedOption = null;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +52,7 @@ class _DropDownFormFieldState extends State<DropDownFormField> {
               setState(() {
                 _selectedOption = value;
               });
-              widget.onOptionSelected(value); // Callback to parent widget
+              widget.onOptionSelected(value);
             },
             validator: (value) {
               if (widget.mandatory && value == null) {
