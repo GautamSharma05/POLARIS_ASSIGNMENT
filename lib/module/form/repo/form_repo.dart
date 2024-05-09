@@ -65,7 +65,7 @@ class FormRepo extends ChangeNotifier {
 
       await secureStorage.writeSecureData('Form Data', body.toString()).then((value) {
         clearForm(formData);
-        AppNavigator.replaceClassName(context, const HomeRoute());
+        Util.getFlashBar(context, 'Your data has been saved successfully');
       }).catchError((onError) {
         Util.getFlashBar(context, AppText.somethingWentWrongText);
         log('Error On Submit Form Locally ${onError.toString()}');
